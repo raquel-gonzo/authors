@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Form = () => {
+const Form = (props) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        axios
-        .post("http://localhost:8000/api/authors/new", {
+        axios.post("http://localhost:8000/api/authors/new", {
             firstName,
             lastName,
         })
@@ -28,7 +27,9 @@ const Form = () => {
             <br />
             <input type="text" onChange={(e) => setLastName(e.target.value)} />
         </p>
-        <input type="submit" />
+        
+        <button>Add</button>
+
         </form>
     );
 };

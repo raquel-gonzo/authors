@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from '@reach/router';
 import Form from '../components/Form';
 import List from '../components/List';
+import { set } from 'mongoose';
 
 export default () => {
     const [authors, setAuthors] = useState([]);
@@ -18,10 +20,9 @@ export default () => {
     }, [])
 
     return (
-        <>
-            <h4>Create a list of your favorite Authors: </h4>
-            <Form />
+        <>            
             {loaded && <List authors={authors}/>}
+            <Link to="/authors/new">Add an Author!</Link>
         </>
     )
 }
