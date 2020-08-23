@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Form from '../components/Form';
+import List from '../components/List';
 
 export default () => {
     const [authors, setAuthors] = useState([]);
@@ -20,6 +21,7 @@ export default () => {
         <>
             <h4>Create a list of your favorite Authors: </h4>
             <Form />
+            {loaded && <List authors={authors}/>}
         </>
     )
 }
