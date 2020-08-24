@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import { Router } from '@reach/router';
 import Main from './views/Main';
-import Detail from './views/Detail';
 import Create from './views/Create';
+import Update from './views/Update';
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
       <Router>
           <Main path="/"/>
           <Create path="/authors/new" />
+          <Update path="/author/update/:id" />
       </Router>
     </div>
   );

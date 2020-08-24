@@ -1,7 +1,16 @@
 import React from 'react';
 import './tableStyles.css';
+import {navigate, Link } from '@reach/router';
+import axios from 'axios';
+import DeleteButton from '../components/DeleteBtn';
 
 const List = (props) => {
+    const btnUpdate = (id) => {
+        navigate('/author/update/' + id)
+    }
+
+    const { removeFromDom } = props;
+
     const renderTable = () => {
         return (props.authors.map((author, idx) => {
             const { firstName, lastName } = author
@@ -9,8 +18,8 @@ const List = (props) => {
                     <tr key={idx}>
                         <td>{firstName} {lastName}</td>
                         <td>
-                            <button>Update</button>
-                            <button>Delete</button>
+                            <button onClick={() => btnUpdate(author._id)} id="edit-btn">Edit</button>
+                            <DeleteButton removeFromDom={removeFromDom} id={author._id}/> 
                         </td>
                     </tr>
                 )
@@ -29,8 +38,3 @@ const List = (props) => {
 }
 
 export default List;
-
-
-// {props.authors.map((author, idx) => {
-//     return <p key={idx}>{author.lastName}, {author.firstName}</p>
-// })}

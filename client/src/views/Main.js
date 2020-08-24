@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from '@reach/router';
-import Form from '../components/Form';
 import List from '../components/List';
-import { set } from 'mongoose';
 
 export default () => {
     const [authors, setAuthors] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    
+    const removeFromDom = authorId => {
+        setAuthors(authors.filter(author => author._id !== authorId));
+    }
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/authors')
@@ -21,7 +23,7 @@ export default () => {
 
     return (
         <>            
-            {loaded && <List authors={authors}/>}
+            {loaded && <List authors={authors} removeFromDom={removeFromDom}/>}
             <Link to="/authors/new">Add an Author!</Link>
         </>
     )
